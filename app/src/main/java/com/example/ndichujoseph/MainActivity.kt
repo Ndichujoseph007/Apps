@@ -14,14 +14,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-                    Greeting()
-                    LoginPage()
-                    Register()
-            Schooldashboard()
-
-                }
-            }
+            Greeting()
+            LoginPage()
+            Register()
         }
+    }
+}
 
 @Composable
 fun Greeting() {

@@ -1,5 +1,6 @@
 package com.example.ndichujoseph
 
+import androidx.compose.foundation.Image
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.foundation.background
@@ -9,17 +10,21 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ndichujoseph.ui.theme.NDICHUJOSEPHTheme
 
@@ -34,11 +39,16 @@ fun Register() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Cyan) // Changed background color for visibility
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(Color.Black, Color.Yellow)
+                )
+            )
             .padding(50.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
     ) {
+        //Image(painter=painterResource(id=R.drawable.logo),contentDescription="logo")
         // Enhanced title text with styling
         Text(
             text = "REGISTER",
@@ -48,18 +58,19 @@ fun Register() {
                 fontSize = 32.sp,
                 letterSpacing = 1.5.sp
             ),
-            color = Color(0xFF6200EE), // Use a primary color
+            color = Color.Cyan,
             modifier = Modifier
                 .padding(bottom = 24.dp)
                 .background(
                     brush = Brush.verticalGradient(
-                        colors = listOf(Color(0xFF6200EE), Color(0xFFBB86FC)),
+                        colors = listOf(Color.Black, Color.Yellow),
                     ),
                     shape = MaterialTheme.shapes.medium
                 )
                 .padding(16.dp)
                 .shadow(8.dp)
         )
+        Spacer(modifier = Modifier.width(32.dp))
 
         // Username input field with placeholder
         OutlinedTextField(
@@ -68,11 +79,12 @@ fun Register() {
             label = { Text("Username") },
             placeholder = { Text("Enter your username") },
             leadingIcon = {
-                Icon(Icons.Filled.Person, contentDescription = "Username Icon") // Assuming you have a Lock icon
+                Icon(Icons.Filled.Person, contentDescription = "Username Icon", tint = Color.Cyan.copy(alpha = 0.7f))
             },
             modifier = Modifier
                 .padding(vertical = 10.dp)
                 .fillMaxWidth()
+
         )
 
         // Email input field with placeholder
@@ -82,11 +94,12 @@ fun Register() {
             label = { Text("Email") },
             placeholder = { Text("Enter your email") },
             leadingIcon = {
-                Icon(Icons.Filled.Email, contentDescription = "Email Icon") // Assuming you have a Lock icon
+                Icon(Icons.Filled.Email, contentDescription = "Email Icon", tint = Color.Cyan.copy(alpha = 0.7f)) // Assuming you have a Lock icon
             },
             modifier = Modifier
                 .padding(vertical = 10.dp)
                 .fillMaxWidth()
+
         )
 
         // Password input field with placeholder and visual transformation to hide text
@@ -96,7 +109,7 @@ fun Register() {
             label = { Text("Password") },
             placeholder = { Text("Enter your password") },
             leadingIcon = {
-                Icon(Icons.Filled.Lock, contentDescription = "Password Icon")
+                Icon(Icons.Filled.Lock, contentDescription = "Password Icon", tint = Color.Cyan.copy(alpha = 0.7f))
             },
 
             modifier = Modifier
@@ -112,7 +125,7 @@ fun Register() {
             label = { Text("Confirm Password") },
             placeholder = { Text("Re-enter your password") },
             leadingIcon = {
-                Icon(Icons.Filled.Lock, contentDescription = "Password Icon") // Assuming you have a Lock icon
+                Icon(Icons.Filled.Lock, contentDescription = "Password Icon", tint = Color.Cyan.copy(alpha = 0.7f)) // Assuming you have a Lock icon
             },
             modifier = Modifier
                 .padding(vertical = 10.dp)
