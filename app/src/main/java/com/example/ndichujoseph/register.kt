@@ -1,6 +1,5 @@
 package com.example.ndichujoseph
 
-import androidx.compose.foundation.Image
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.foundation.background
@@ -12,6 +11,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -21,9 +21,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.ndichujoseph.ui.theme.NDICHUJOSEPHTheme
@@ -41,7 +42,7 @@ fun Register() {
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
-                    colors = listOf(Color.Black, Color.Yellow)
+                    colors = listOf(Color.Black, Color.Blue)
                 )
             )
             .padding(50.dp),
@@ -51,10 +52,10 @@ fun Register() {
         //Image(painter=painterResource(id=R.drawable.logo),contentDescription="logo")
         // Enhanced title text with styling
         Text(
-            text = "REGISTER",
+            text = "SIGN UP",
             style = MaterialTheme.typography.headlineMedium.copy(
                 fontWeight = FontWeight.Bold,
-                fontFamily =FontFamily.Cursive , 
+                fontFamily =FontFamily.SansSerif ,
                 fontSize = 32.sp,
                 letterSpacing = 1.5.sp
             ),
@@ -63,7 +64,7 @@ fun Register() {
                 .padding(bottom = 24.dp)
                 .background(
                     brush = Brush.verticalGradient(
-                        colors = listOf(Color.Black, Color.Yellow),
+                        colors = listOf(Color.Black, Color.Blue),
                     ),
                     shape = MaterialTheme.shapes.medium
                 )
@@ -141,10 +142,20 @@ fun Register() {
             },
             modifier = Modifier
                 .padding(top = 20.dp)
-                .fillMaxWidth()
+                .fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF3498DB)),
+            shape = RoundedCornerShape(28.dp),
         ) {
-            Text("Register")
+            Text("Register",
+            style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.SemiBold))
         }
+        Spacer(modifier=Modifier.height(30.dp))
+        Text("Already have an account?Login",
+            modifier= Modifier
+                .fillMaxSize()
+                .padding(20.dp),
+            color=Color.Green
+        )
 
     }
 }

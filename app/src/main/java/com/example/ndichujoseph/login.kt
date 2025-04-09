@@ -13,12 +13,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,37 +35,41 @@ fun LoginPage() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color =Color.LightGray)
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(Color.Black, Color.Blue)
+                )
+            )
             .padding(32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
     ) {
-        //logo
-        Image(painter=painterResource(id=R.drawable.logo),contentDescription="logo")
-        // Stylish Title
         Text(
             text = "SIGN IN",
-            color=Color.Cyan,
             style = MaterialTheme.typography.headlineLarge.copy(
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.ExtraBold,
                 fontSize = 26.sp,
+                fontFamily=FontFamily.SansSerif,
                 letterSpacing = 1.5.sp
             ),
+            color = Color.Cyan,
             modifier = Modifier
-                .padding(top=2.dp)
+                .padding()
                 .background(
                     brush = Brush.verticalGradient(
-                        colors = listOf(Color.White, Color.White),
+                        colors = listOf(Color.Black, Color.Blue),
                     ),
                     shape = MaterialTheme.shapes.medium
                 )
+                .padding(16.dp)
+                .shadow(8.dp)
         )
 
         // Stylish Username Input
         OutlinedTextField(
             value = username,
             onValueChange = { username = it },
-            leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "Username", tint = Color.Black.copy(alpha = 0.7f)) },
+            leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "Username", tint = Color.Cyan.copy(alpha = 0.7f)) },
             label = { Text("Username", color = Color.White.copy(alpha = 0.7f)) },
             placeholder = { Text("Enter your username", color = Color.White.copy(alpha = 0.5f)) },
             modifier = Modifier
@@ -75,7 +82,7 @@ fun LoginPage() {
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            leadingIcon = { Icon(Icons.Filled.Lock, contentDescription = "Password", tint = Color.Black.copy(alpha = 0.7f)) },
+            leadingIcon = { Icon(Icons.Filled.Lock, contentDescription = "Password", tint = Color.Cyan.copy(alpha = 0.7f)) },
             label = { Text("Password", color = Color.White.copy(alpha = 0.7f)) },
             placeholder = { Text("Enter your password", color = Color.White.copy(alpha = 0.5f)) },
             modifier = Modifier
@@ -94,7 +101,7 @@ fun LoginPage() {
                 .padding(top = 24.dp)
                 .fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF3498DB)),
-            shape = RoundedCornerShape(8.dp),
+            shape = RoundedCornerShape(28.dp),
             contentPadding = PaddingValues(16.dp)
         ) {
             Text(
@@ -103,6 +110,13 @@ fun LoginPage() {
                 style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
             )
         }
+        Spacer(modifier=Modifier.height(30.dp))
+        Text("Don't have an account?Sign in.",
+            modifier= Modifier
+                .fillMaxSize()
+                .padding(35.dp),
+            color=Color.Green
+        )
     }
 }
 
