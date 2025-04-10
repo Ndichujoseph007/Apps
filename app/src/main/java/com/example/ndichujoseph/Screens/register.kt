@@ -1,4 +1,4 @@
-package com.example.ndichujoseph
+package com.example.ndichujoseph.Screens
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -11,29 +11,34 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.ndichujoseph.ui.theme.NDICHUJOSEPHTheme
 
 @Composable
-fun Register() {
+fun Register(navController: NavController) {
     // State variables for user input
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
+    var location by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
 
@@ -70,6 +75,7 @@ fun Register() {
                 )
                 .padding(16.dp)
                 .shadow(8.dp)
+                .clip(CircleShape)
         )
         Spacer(modifier = Modifier.width(32.dp))
 
@@ -96,6 +102,19 @@ fun Register() {
             placeholder = { Text("Enter your email") },
             leadingIcon = {
                 Icon(Icons.Filled.Email, contentDescription = "Email Icon", tint = Color.Cyan.copy(alpha = 0.7f)) // Assuming you have a Lock icon
+            },
+            modifier = Modifier
+                .padding(vertical = 10.dp)
+                .fillMaxWidth()
+
+        )
+        //location input
+        OutlinedTextField(
+            value = location,
+            onValueChange = { location = it },
+            label = { Text("Location") },
+            leadingIcon = {
+                Icon(Icons.Filled.LocationOn, contentDescription = "Email Icon", tint = Color.Cyan.copy(alpha = 0.7f)) // Assuming you have a Lock icon
             },
             modifier = Modifier
                 .padding(vertical = 10.dp)
@@ -136,10 +155,7 @@ fun Register() {
 
         // Register button
         Button(
-            onClick = {
-                // Handle registration logic here
-                println("Username: $username, Email: $email, Password: $password")
-            },
+            onClick = {navController.navigate("Dashboard")},
             modifier = Modifier
                 .padding(top = 20.dp)
                 .fillMaxWidth(),
@@ -150,12 +166,16 @@ fun Register() {
             style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.SemiBold))
         }
         Spacer(modifier=Modifier.height(30.dp))
-        Text("Already have an account?Login",
-            modifier= Modifier
-                .fillMaxSize()
-                .padding(20.dp),
-            color=Color.Green
-        )
+        TextButton(
+            onClick={navController.navigate("LoginPage")}) {
+            Text(
+                "Already have an account?Login",
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
+                color = Color.Green
+            )
+        }
 
     }
 }
@@ -164,6 +184,7 @@ fun Register() {
 @Composable
 fun RegisterPreview() {
     NDICHUJOSEPHTheme {
-        Register()
+        val mockNavController=rememberNavController()
+        Register(navController=mockNavController)
     }
 }

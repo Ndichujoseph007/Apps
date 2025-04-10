@@ -1,27 +1,28 @@
-package com.example.ndichujoseph
+package com.example.ndichujoseph.Screens
 
-import android.util.Half.round
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,15 +33,17 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.ndichujoseph.ui.theme.NDICHUJOSEPHTheme
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Schooldashboard() {
+fun Dashboard(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,6 +56,10 @@ fun Schooldashboard() {
         verticalArrangement = Arrangement.spacedBy(18.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        TopAppBar(
+            title = { Text("Login", color = Color.White) },
+            modifier = Modifier.fillMaxWidth()
+        )
         Text(
             text = "School System Dashboard",
             style = TextStyle(
@@ -88,7 +95,7 @@ fun Schooldashboard() {
         DashboardCard(
             title = "Grades.",
             description = "Manage Grades for students.",
-            icon = Icons.Default.Face,
+            icon = Icons.Default.DateRange,
             backgroundColor= Color.Red,
         )
         DashboardCard(
@@ -115,7 +122,7 @@ fun DashboardCard(
 ) {
     Card(
         modifier = Modifier
-            .border(4.dp, Color.Gray, shape = RoundedCornerShape(23.dp))
+            .border(12.dp, Color.Gray, shape = RoundedCornerShape(24.dp))
             .fillMaxWidth()
             .padding(4.dp)
             .clickable { println("Card '$title' clicked!") },
@@ -155,8 +162,9 @@ fun DashboardCard(
 
 @Preview(showBackground = true)
 @Composable
-fun SchooldashboardPreview() {
+fun DashboardPreview() {
     NDICHUJOSEPHTheme {
-        Schooldashboard()
+        val mockNavController=rememberNavController()
+        Dashboard(navController=mockNavController)
     }
 }

@@ -1,14 +1,14 @@
 @file:JvmName("LoginKt")
 
-package com.example.ndichujoseph
+package com.example.ndichujoseph.Screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -16,21 +16,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.ndichujoseph.ui.theme.NDICHUJOSEPHTheme
 
 @Composable
-fun LoginPage() {
+fun LoginPage(navController: NavController) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var Phone by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -77,6 +78,18 @@ fun LoginPage() {
                 .fillMaxWidth(),
             shape = RoundedCornerShape(12.dp) // Rounded corners
         )
+        //stylish Phone Number
+        OutlinedTextField(
+            value = Phone,
+            onValueChange = { Phone = it },
+            leadingIcon = { Icon(Icons.Filled.Phone, contentDescription = "Username", tint = Color.Cyan.copy(alpha = 0.7f)) },
+            label = { Text("Phone Number", color = Color.White.copy(alpha = 0.7f)) },
+            placeholder = { Text("Enter your username", color = Color.White.copy(alpha = 0.5f)) },
+            modifier = Modifier
+                .padding(vertical = 8.dp)
+                .fillMaxWidth(),
+            shape = RoundedCornerShape(12.dp) // Rounded corners
+        )
 
         // Stylish Password Input
         OutlinedTextField(
@@ -94,9 +107,7 @@ fun LoginPage() {
 
         // Stylish Login Button
         Button(
-            onClick = {
-                println("Username: $username, Password: $password")
-            },
+            onClick = {navController.navigate("Dashboard")},
             modifier = Modifier
                 .padding(top = 24.dp)
                 .fillMaxWidth(),
@@ -111,12 +122,17 @@ fun LoginPage() {
             )
         }
         Spacer(modifier=Modifier.height(30.dp))
-        Text("Don't have an account?Sign in.",
-            modifier= Modifier
-                .fillMaxSize()
-                .padding(35.dp),
-            color=Color.Green
-        )
+        TextButton(
+            onClick={navController.navigate("Register")}
+        ) {
+            Text(
+                "Don't have an account?Sign in.",
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(35.dp),
+                color = Color.Green
+            )
+        }
     }
 }
 
@@ -125,6 +141,7 @@ fun LoginPage() {
 @Composable
 fun LoginPagePreview() {
     NDICHUJOSEPHTheme {
-        LoginPage()
+        val mockNavController=rememberNavController()
+        LoginPage(navController=mockNavController)
     }
 }

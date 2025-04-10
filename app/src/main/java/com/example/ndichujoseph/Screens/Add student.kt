@@ -1,4 +1,4 @@
-package com.example.ndichujoseph
+package com.example.ndichujoseph.Screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,7 +18,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -36,14 +35,15 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.ndichujoseph.ui.theme.NDICHUJOSEPHTheme
 
 @Composable
-fun AddScreen() {
+fun AddScreen(navController: NavController) {
     var fullname by remember { mutableStateOf("") }
     var age by remember { mutableStateOf("") }
     var selectedCourse by remember { mutableStateOf("") }
@@ -182,6 +182,7 @@ fun DropDownMenuComponent(
 @Composable
 fun AddScreenPreview() {
     NDICHUJOSEPHTheme {
-        AddScreen()
+        val mockNavController=rememberNavController()
+        AddScreen(navController=mockNavController)
     }
 }
