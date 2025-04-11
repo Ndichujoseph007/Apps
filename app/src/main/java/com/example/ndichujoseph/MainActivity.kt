@@ -23,12 +23,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextAlign.Companion.Center
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.ndichujoseph.Navigation.AppNavigation
+import com.example.ndichujoseph.navigation.AppNavigation
 import com.example.ndichujoseph.ui.theme.NDICHUJOSEPHTheme
 
 class MainActivity : ComponentActivity() {
@@ -65,22 +65,23 @@ fun HomePage(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
         ){
-           /* Image(
-                painter = painterResource(id = R.drawable.home_image), // Replace with your image
-                contentDescription = "Home Image",
+            Image(
+                painter = painterResource(id = R.drawable.logo6),
+                    contentDescription="logo",
                 modifier = Modifier
-                    .size(200.dp)
-                    .clip(RoundedCornerShape(20.dp)),
+                    .size(170.dp)
+                    .clip(RoundedCornerShape(4000.dp)),
                 contentScale = ContentScale.Crop
-            )*/
+            )
             Spacer(modifier = Modifier.height(32.dp))
             Text(
-                text = "Welcome To My Awesome App",
+                text = "Hello,Welcome To My Awesome App",
                 style = TextStyle(
                     color=Color.Cyan,
                     fontFamily=FontFamily.SansSerif,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.ExtraBold
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    textAlign=Center
                 ),color = Color.Cyan,
                 modifier = Modifier
                     .padding(bottom = 24.dp)
@@ -96,9 +97,14 @@ fun HomePage(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "Discover amazing features and enjoy your experience.",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
-                textAlign = TextAlign.Center
+                style = TextStyle(
+                    color=Color.Cyan,
+                    fontFamily=FontFamily.Cursive,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    textAlign=Center
+                )
+
             )
             Spacer(modifier = Modifier.height(162.dp))
             Button(

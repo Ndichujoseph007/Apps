@@ -1,6 +1,6 @@
 @file:JvmName("LoginKt")
 
-package com.example.ndichujoseph.Screens
+package com.example.ndichujoseph.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

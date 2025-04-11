@@ -1,4 +1,4 @@
-package com.example.ndichujoseph.Screens
+package com.example.ndichujoseph.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -6,10 +6,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
@@ -38,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.material3.TopAppBarColors
 import com.example.ndichujoseph.ui.theme.NDICHUJOSEPHTheme
 
 
@@ -57,8 +61,12 @@ fun Dashboard(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TopAppBar(
-            title = { Text("Login", color = Color.White) },
-            modifier = Modifier.fillMaxWidth()
+            title = { Text("Login", color = Color.Black)},
+            actions = {
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(12.dp, Color.Gray, shape = RoundedCornerShape(3.dp)),
         )
         Text(
             text = "School System Dashboard",
@@ -84,48 +92,44 @@ fun Dashboard(navController: NavController) {
             title = "Students.",
             description = "Manage student records.",
             icon = Icons.Default.Person,
-            backgroundColor = Color.Red,
         )
         DashboardCard(
             title = "Teachers.",
             description = "Manage teacher information.",
             icon = Icons.Default.Face,
-            backgroundColor= Color.Red,
         )
         DashboardCard(
             title = "Grades.",
             description = "Manage Grades for students.",
             icon = Icons.Default.DateRange,
-            backgroundColor= Color.Red,
         )
         DashboardCard(
             title = "Classes.",
             description = "Manage students classes.",
             icon = Icons.Default.Face,
-            backgroundColor= Color.Red,
         )
         DashboardCard(
             title = "Departments.",
             description = "Manage  teachers departments.",
             icon = Icons.Default.Face,
-            backgroundColor= Color.Red,
         )
 
     }
 }
+
+
 @Composable
 fun DashboardCard(
     title: String,
     description: String,
-    icon: ImageVector,
-    backgroundColor: Color
+    icon: ImageVector
 ) {
     Card(
         modifier = Modifier
             .border(12.dp, Color.Gray, shape = RoundedCornerShape(24.dp))
             .fillMaxWidth()
             .padding(4.dp)
-            .clickable { println("Card '$title' clicked!") },
+            .clickable { },
         colors=CardDefaults.cardColors(
             containerColor=Color.LightGray,
             contentColor=Color.Blue

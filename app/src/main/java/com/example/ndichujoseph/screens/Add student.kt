@@ -1,8 +1,9 @@
-package com.example.ndichujoseph.Screens
+package com.example.ndichujoseph.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material.icons.Icons
@@ -20,6 +21,7 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -49,19 +51,19 @@ fun AddScreen(navController: NavController) {
     var selectedCourse by remember { mutableStateOf("") }
     var selectedGender by remember { mutableStateOf("") }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(Color.Black, Color.Blue)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(Color.Black, Color.Blue)
+                    )
                 )
-            )
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(18.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(18.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+             Text(
             text = "Add New Student",
             style = MaterialTheme.typography.headlineMedium.copy(
 
@@ -83,57 +85,57 @@ fun AddScreen(navController: NavController) {
                 .shadow(8.dp)
         )
 
-        OutlinedTextField(
-            value = fullname,
-            onValueChange = { fullname = it },
-            label = { Text("Full Name") },
-            singleLine = true,
-            modifier = Modifier
-                .padding()
-                .fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(3.dp))
-        OutlinedTextField(
-            value = age,
-            onValueChange = { age = it },
-            label = { Text("Age") },
-            singleLine = true,
-            modifier = Modifier
-                .fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-        )
-        Spacer(modifier = Modifier.height(3.dp))
-        //course DropDownMenu
-        DropDownMenuComponent(
-            label = "Select Course",
-            options = listOf("FULLSTACK", "CYBERSECURITY", "DATASCIENCE"),
-            selectedOption = selectedCourse,
-            onOptionSelected = { selectedCourse = it }
-        )
-        DropDownMenuComponent(
-            label = "Select Gender",
-            options = listOf("MALE", "FEMALE", "CUSTOM"),
-            selectedOption = selectedGender,
-            onOptionSelected = { selectedGender = it }
-        )
-
-        Button(
-            onClick = {
-                println("Adding student with name: $fullname, age: $age, course: $selectedCourse")
-            },
-            modifier = Modifier
-                .fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF3498DB)),
-            shape = RoundedCornerShape(28.dp)
-        ) {
-            Text(
-                "Add Student",
-                color = Color.White,
-                style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+            OutlinedTextField(
+                value = fullname,
+                onValueChange = { fullname = it },
+                label = { Text("Full Name") },
+                singleLine = true,
+                modifier = Modifier
+                    .padding()
+                    .fillMaxWidth()
             )
+            Spacer(modifier = Modifier.height(3.dp))
+            OutlinedTextField(
+                value = age,
+                onValueChange = { age = it },
+                label = { Text("Age") },
+                singleLine = true,
+                modifier = Modifier
+                    .fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            )
+            Spacer(modifier = Modifier.height(3.dp))
+            //course DropDownMenu
+            DropDownMenuComponent(
+                label = "Select Course",
+                options = listOf("FULLSTACK", "CYBERSECURITY", "DATASCIENCE"),
+                selectedOption = selectedCourse,
+                onOptionSelected = { selectedCourse = it }
+            )
+            DropDownMenuComponent(
+                label = "Select Gender",
+                options = listOf("MALE", "FEMALE", "CUSTOM"),
+                selectedOption = selectedGender,
+                onOptionSelected = { selectedGender = it }
+            )
+
+            Button(
+                onClick = {
+                    println("Adding student with name: $fullname, age: $age, course: $selectedCourse")
+                },
+                modifier = Modifier
+                    .fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF3498DB)),
+                shape = RoundedCornerShape(28.dp)
+            ) {
+                Text(
+                    "Add Student",
+                    color = Color.White,
+                    style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+                )
+            }
         }
     }
-}
 
 
 

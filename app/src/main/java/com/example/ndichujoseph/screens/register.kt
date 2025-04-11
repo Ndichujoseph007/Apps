@@ -1,4 +1,4 @@
-package com.example.ndichujoseph.Screens
+package com.example.ndichujoseph.screens
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
