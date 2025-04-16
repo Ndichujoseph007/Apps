@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "130721931779",
+    "project_id": "coyote-73230",
+    "storage_bucket": "coyote-73230.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130721931779:android:1484f8223ebe06fc47a436",
+        "android_client_info": {
+          "package_name": "com.example.ndichujoseph"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl1YVk6IK90R1IUzQq5KQP9pZmmCGTYKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
