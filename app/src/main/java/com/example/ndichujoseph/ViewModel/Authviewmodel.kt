@@ -11,10 +11,22 @@ class AuthViewModel : ViewModel() {
 
     var isRegistered by mutableStateOf<Boolean?>(null)
         private set
+    var isLoggedIn by mutableStateOf<Boolean?>(null)
+        private set
 
     fun register(email: String, password: String) {
         repository.register(email, password) { success ->
             isRegistered = success
         }
+    }
+
+    fun login(email: String, password: String) {
+        repository.login(email, password) { success ->
+            isLoggedIn = success
+        }
+    }
+    fun logout(){
+        repository.logout()
+        isLoggedIn=false
     }
 }

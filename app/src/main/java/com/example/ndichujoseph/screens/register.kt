@@ -31,23 +31,36 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.ndichujoseph.ViewModel.AuthViewModel
 import com.example.ndichujoseph.ui.theme.NDICHUJOSEPHTheme
 
 @Composable
-fun Register(navController: NavController) {
+fun Register(
+    navController: NavController,
+    viewModel: AuthViewModel
+) {
     // State variables for user input
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
+    val isRegistered=viewModel.isRegistered
+    LaunchedEffect(isRegistered){
+        if(isRegistered==true){
+            navController.navigate(("dashboard")){
+                popUpTo("Register")
+                {inclusive=true}
+            }
+        }
+    }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
-                    colors = listOf(Color.Black, Color.Blue)
+                    colors = listOf(Color.White, Color.Blue)
                 )
             )
             .padding(50.dp),
@@ -99,22 +112,10 @@ fun Register(navController: NavController) {
             value = email,
             onValueChange = { email = it },
             label = { Text("Email") },
+            singleLine = true,
             placeholder = { Text("Enter your email") },
             leadingIcon = {
                 Icon(Icons.Filled.Email, contentDescription = "Email Icon", tint = Color.Cyan.copy(alpha = 0.7f)) // Assuming you have a Lock icon
-            },
-            modifier = Modifier
-                .padding(vertical = 10.dp)
-                .fillMaxWidth()
-
-        )
-        //location input
-        OutlinedTextField(
-            value = location,
-            onValueChange = { location = it },
-            label = { Text("Location") },
-            leadingIcon = {
-                Icon(Icons.Filled.LocationOn, contentDescription = "Email Icon", tint = Color.Cyan.copy(alpha = 0.7f)) // Assuming you have a Lock icon
             },
             modifier = Modifier
                 .padding(vertical = 10.dp)
@@ -127,6 +128,7 @@ fun Register(navController: NavController) {
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
+            singleLine = true,
             placeholder = { Text("Enter your password") },
             leadingIcon = {
                 Icon(Icons.Filled.Lock, contentDescription = "Password Icon", tint = Color.Cyan.copy(alpha = 0.7f))
@@ -143,6 +145,7 @@ fun Register(navController: NavController) {
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
             label = { Text("Confirm Password") },
+            singleLine = true,
             placeholder = { Text("Re-enter your password") },
             leadingIcon = {
                 Icon(Icons.Filled.Lock, contentDescription = "Password Icon", tint = Color.Cyan.copy(alpha = 0.7f)) // Assuming you have a Lock icon
@@ -155,7 +158,16 @@ fun Register(navController: NavController) {
 
         // Register button
         Button(
-            onClick = {navController.navigate("Dashboard")},
+            onClick = {
+                if(password == confirmPassword && email.isNotBlank() && password.isNotBlank()
+                    ){
+                    viewModel.register(email,password)
+                    navController.navigate("Dashboard")
+                }
+                else{
+                    println("Passwords do not match or fields are empty")
+                }
+            },
             modifier = Modifier
                 .padding(top = 20.dp)
                 .fillMaxWidth(),
@@ -185,6 +197,7 @@ fun Register(navController: NavController) {
 fun RegisterPreview() {
     NDICHUJOSEPHTheme {
         val mockNavController=rememberNavController()
-        Register(navController=mockNavController)
+        val mockViewModel= AuthViewModel()
+        Register(navController=mockNavController,viewModel=mockViewModel)
     }
 }

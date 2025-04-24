@@ -31,14 +31,14 @@ import com.example.ndichujoseph.ui.theme.NDICHUJOSEPHTheme
 fun LoginPage(navController: NavController) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var Phone by remember { mutableStateOf("") }
+
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
-                    colors = listOf(Color.Black, Color.Blue)
+                    colors = listOf(Color.White, Color.Blue)
                 )
             )
             .padding(32.dp),
@@ -72,18 +72,6 @@ fun LoginPage(navController: NavController) {
             onValueChange = { username = it },
             leadingIcon = { Icon(Icons.Filled.Person, contentDescription = "Username", tint = Color.Cyan.copy(alpha = 0.7f)) },
             label = { Text("Username", color = Color.White.copy(alpha = 0.7f)) },
-            placeholder = { Text("Enter your username", color = Color.White.copy(alpha = 0.5f)) },
-            modifier = Modifier
-                .padding(vertical = 8.dp)
-                .fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp) // Rounded corners
-        )
-        //stylish Phone Number
-        OutlinedTextField(
-            value = Phone,
-            onValueChange = { Phone = it },
-            leadingIcon = { Icon(Icons.Filled.Phone, contentDescription = "Username", tint = Color.Cyan.copy(alpha = 0.7f)) },
-            label = { Text("Phone Number", color = Color.White.copy(alpha = 0.7f)) },
             placeholder = { Text("Enter your username", color = Color.White.copy(alpha = 0.5f)) },
             modifier = Modifier
                 .padding(vertical = 8.dp)
@@ -137,11 +125,3 @@ fun LoginPage(navController: NavController) {
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun LoginPagePreview() {
-    NDICHUJOSEPHTheme {
-        val mockNavController=rememberNavController()
-        LoginPage(navController=mockNavController)
-    }
-}

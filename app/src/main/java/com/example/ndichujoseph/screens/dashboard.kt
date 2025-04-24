@@ -60,14 +60,6 @@ fun Dashboard(navController: NavController) {
         verticalArrangement = Arrangement.spacedBy(18.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TopAppBar(
-            title = { Text("Login", color = Color.Black)},
-            actions = {
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .border(12.dp, Color.Gray, shape = RoundedCornerShape(3.dp)),
-        )
         Text(
             text = "School System Dashboard",
             style = TextStyle(
